@@ -30,8 +30,8 @@ class Showingalldata:
     def setStartTime(self, starttime):
         self.starttime = starttime
 
-    def setHouse(self, housename):
-        is_exist = path.exists(Path("Data\House\{}".format(housename)))
+    def setHouse(self, housename: str):
+        is_exist = path.exists(Path("Data/House/{}".format(housename)))
         if is_exist:
             self.house = housename
             
@@ -56,7 +56,7 @@ class Showingalldata:
                     temp.append(0)
                 self.seatingplan.append(temp)
 
-    def setFilm(self, film, dimension):
+    def setFilm(self, film: str, dimension: str):
         self.endtime
         self.film
         self.dimension
