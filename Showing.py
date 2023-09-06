@@ -1,17 +1,18 @@
 """
-Showing.self
-       .starttime
-       .endtime
+Showing.self         __init__(self)
+
+       .starttime    setStartTime(self, starttime)
        
-       .house
+       .house        setHouse(self, housename: str)
        .seatingplan
        
-       .film
+       .film         setFilm(self, film: str, dimension: str)
        .dimension
        .language
        .price
        .rating
        .timelength
+       .endtime
 """
 
 
