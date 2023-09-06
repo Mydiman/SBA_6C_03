@@ -1,4 +1,9 @@
-"""different colour"""
+"""
+Different colour
+Reset --> Colour off + Black background + White words
+B     --> Bold
+On    --> Background
+"""
 
 
 
