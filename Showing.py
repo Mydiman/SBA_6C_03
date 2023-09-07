@@ -54,7 +54,7 @@ class Showing:
                 temp.append(0)
             self.seatingplan.append(temp)
 
-    def setFilm(self, film: str, dimension: str):
+    def setFilm(self, film: str, dimension: str, language: str):
         self.film
         self.dimension
         self.language
