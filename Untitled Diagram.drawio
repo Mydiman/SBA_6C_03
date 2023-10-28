@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-10-27T07:57:03.047Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="X_9oAIS5p73FXPyVj9CF" version="22.0.8" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2023-10-28T09:15:34.556Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="Cgr45-iGYuNvVDkjnvar" version="22.0.8" type="github" pages="3">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="main">
     <mxGraphModel dx="954" dy="1771" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -388,8 +388,8 @@
         <mxCell id="M9PST7t6meDYjvWlfZaL-20" value="Read film data in Film folder" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="260" y="1330" width="180" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="M9PST7t6meDYjvWlfZaL-21" value="display table of film, rating and time length" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.display;whiteSpace=wrap;" vertex="1" parent="1">
-          <mxGeometry x="280" y="1430" width="140" height="80" as="geometry" />
+        <mxCell id="M9PST7t6meDYjvWlfZaL-21" value="display table of dimension, language and price" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.display;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="260" y="1430" width="180" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
