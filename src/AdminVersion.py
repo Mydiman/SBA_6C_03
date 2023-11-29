@@ -2146,13 +2146,6 @@ def admin_version() -> bool:
             int_input = 0
             print_205(house)
             str_input = input("")
-            file_path = path.join(commond_path, 'House', 'housename.txt')
-            f = open(file_path, "r")
-            count_house = int(f.readline() [:-1])
-            for i in range(count_house):
-                if f.readline() [:-1] == "House " + str_input and "House " + str_input != house:
-                    str_input = ""
-            f.close()
             while str_input != "" and str_input [0] == " ":
                 temp = ""
                 for i in range(1, len(str_input)):
@@ -2164,16 +2157,24 @@ def admin_version() -> bool:
                     temp += str_input [i]
                 str_input = temp
             if str_input == "":
-                print(Colour.Red + "HOUSE NAME CANNOT BE EMPTY OR THE SAME AS OTHER HOUSES" + Colour.Reset)
+                print(Colour.Red + "NAME OF A HOUSE CANNOT BE EMPTY" + Colour.Reset)
                 input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
             elif file_name_include(str_input) == False:
                 str_input = ""
-                print(Colour.Red + "HOUSE NAME CANNOT INCLUDE \/:*?\"<>|" + Colour.Reset)
+                print(Colour.Red + "NAME OF A HOUSE CANNOT INCLUDE \/:*?\"<>|" + Colour.Reset)
                 input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
             elif file_name_include_ascii(str_input) == False:
                 str_input = ""
-                print(Colour.Red + "HOUSE NAME MUST BE WITHIN ASCII 32 to 126" + Colour.Reset)
+                print(Colour.Red + "NAME OF A HOUSE MUST BE WITHIN ASCII 32 to 126" + Colour.Reset)
                 input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
+            file_path = path.join(commond_path, "House", "housename.txt")
+            f = open(file_path, "r")
+            count_house = int(f.readline() [:-1])
+            for i in range(count_house):
+                if str_input.upper() == f.readline().upper() and str_input.upper() != house.upper():
+                    str_input = ""
+                    print(Colour.Red + "NAME OF A HOUSE CANNOT BE THE SAME AS OTHER HOUSES" + Colour.Reset)
+                    input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
             else:
                 file_path = path.join(commond_path, 'House', 'housename.txt')
                 line = []
@@ -2371,25 +2372,24 @@ def admin_version() -> bool:
                         temp += name [i]
                     name = temp
                 if name == "":
-                    print(Colour.Red + "HOUSE NAME CANNOT BE EMPTY" + Colour.Reset)
+                    print(Colour.Red + "NAME OF A HOUSE CANNOT BE EMPTY" + Colour.Reset)
                     input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
                 elif file_name_include(name) == False:
                     name = ""
-                    print(Colour.Red + "HOUSE NAME CANNOT INCLUDE \/:*?\"<>|" + Colour.Reset)
+                    print(Colour.Red + "NAME OF A HOUSE CANNOT INCLUDE \/:*?\"<>|" + Colour.Reset)
                     input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
                 elif file_name_include_ascii(name) == False:
                     name = ""
-                    print(Colour.Red + "HOUSE NAME MUST BE WITHIN ASCII 32 to 126" + Colour.Reset)
+                    print(Colour.Red + "NAME OF A HOUSE MUST BE WITHIN ASCII 32 to 126" + Colour.Reset)
                     input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
-                file_path = path.join(commond_path, 'House', 'housename.txt')
+                file_path = path.join(commond_path, "House", "housename.txt")
                 f = open(file_path, "r")
                 count_house = int(f.readline() [:-1])
                 for i in range(count_house):
-                    if f.readline() [:-1] == "House " + name:
+                    if name.upper() == f.readline().upper() and name.upper() != house.upper():
                         name = ""
-                        print(Colour.Red + "HOUSE NAME CANNOT BE THE SAME AS OTHER HOUSES" + Colour.Reset)
+                        print(Colour.Red + "NAME OF A HOUSE CANNOT BE THE SAME AS OTHER HOUSES" + Colour.Reset)
                         input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
-                f.close()
             print("")
             row = 0
             while row == 0:
@@ -2398,7 +2398,7 @@ def admin_version() -> bool:
                     row = int(row)
                 else:
                     row = 0
-                    print(Colour.Red + "INPUT INCORRENT" + Colour.Reset)
+                    print(Colour.Red + "INPUT INCORRECT" + Colour.Reset)
                     input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
                     clearscreen()
                     print("What is the name of the new house: " + name)
@@ -2410,7 +2410,7 @@ def admin_version() -> bool:
                     column = int(column)
                 else:
                     column = 0
-                    print(Colour.Red + "INPUT INCORRENT" + Colour.Reset)
+                    print(Colour.Red + "INPUT INCORRECT" + Colour.Reset)
                     input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
                     clearscreen()
                     print("What is the name of the new house: " + name)
@@ -2535,13 +2535,13 @@ def admin_version() -> bool:
                         temp += str_input [i]
                     str_input = temp
                 if str_input == "":
-                    print(Colour.Red + "NEW NAME OF A FILM CANNOT BE EMPTY" + Colour.Reset)
+                    print(Colour.Red + "FILM NAME CANNOT BE EMPTY" + Colour.Reset)
                     input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
-                elif str_input == "Film addition":
+                elif str_input.upper() == "Film addition".upper():
                     str_input = ""
                     print(Colour.Red + "FILM NAME CANNOT BE \"Film addition\"" + Colour.Reset)
                     input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
-                elif str_input == "Go back":
+                elif str_input.upper() == "Go back".upper():
                     str_input = ""
                     print(Colour.Red + "FILM NAME CANNOT BE \"Go back\"" + Colour.Reset)
                     input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
@@ -2556,7 +2556,7 @@ def admin_version() -> bool:
                 for i in range(count_film):
                     if str_input.upper() == line [i].upper() and str_input != filmname:
                         str_input = ""
-                        print(Colour.Red + "NEW NAME OF A FILM CANNOT BE THE SAME AS OTHER FILM" + Colour.Reset)
+                        print(Colour.Red + "FILM NAME CANNOT BE THE SAME AS OTHER FILMS" + Colour.Reset)
                         input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
             file_path = path.join(commond_path, 'Film', 'filmname.txt')
             line = []
@@ -3699,11 +3699,11 @@ def admin_version() -> bool:
                     name = ""
                     print(Colour.Red + "FILM NAME CANNOT INCLUDE \/:*?\"<>|" + Colour.Reset)
                     input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
-                elif name == "Film addition":
+                elif name.upper() == "Film addition".upper():
                     name = ""
                     print(Colour.Red + "FILM NAME CANNOT BE \"Film addition\"" + Colour.Reset)
                     input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
-                elif name == "Go back":
+                elif name.upper() == "Go back".upper():
                     name = ""
                     print(Colour.Red + "FILM NAME CANNOT BE \"Go back\"" + Colour.Reset)
                     input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
@@ -4230,7 +4230,7 @@ def admin_version() -> bool:
                                     if int(str_input2) == 1 or int(str_input2) == 3 or int(str_input2) == 5 or int(str_input2) == 7 or int(str_input2) == 8 or int(str_input2) == 10 or int(str_input2) == 12:
                                         if int(str_input1) > 31 and int(str_input1) != 0:
                                             str_input = ""
-                                            print(Colour.Red + "INPUT INCORRENT" + Colour.Reset)
+                                            print(Colour.Red + "INPUT INCORRECT" + Colour.Reset)
                                             input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
                                     elif int(str_input2) == 2:
                                         temp = int(str_input3)
@@ -4239,29 +4239,29 @@ def admin_version() -> bool:
                                         if temp == 0:
                                             if int(str_input1) > 29 and int(str_input1) != 0:
                                                 str_input = ""
-                                                print(Colour.Red + "INPUT INCORRENT" + Colour.Reset)
+                                                print(Colour.Red + "INPUT INCORRECT" + Colour.Reset)
                                                 input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
                                         else:
                                             if int(str_input1) > 28 and int(str_input1) != 0:
                                                 str_input = ""
-                                                print(Colour.Red + "INPUT INCORRENT" + Colour.Reset)
+                                                print(Colour.Red + "INPUT INCORRECT" + Colour.Reset)
                                                 input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
                                     else:
                                         if int(str_input1) > 30 and int(str_input1) != 0:
                                             str_input = ""
-                                            print(Colour.Red + "INPUT INCORRENT" + Colour.Reset)
+                                            print(Colour.Red + "INPUT INCORRECT" + Colour.Reset)
                                             input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
                                 else:
                                     str_input = ""
-                                    print(Colour.Red + "INPUT INCORRENT" + Colour.Reset)
+                                    print(Colour.Red + "INPUT INCORRECT" + Colour.Reset)
                                     input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
                             else:
                                 str_input = ""
-                                print(Colour.Red + "INPUT INCORRENT" + Colour.Reset)
+                                print(Colour.Red + "INPUT INCORRECT" + Colour.Reset)
                                 input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
                         else:
                             str_input = ""
-                            print(Colour.Red + "INPUT INCORRENT" + Colour.Reset)
+                            print(Colour.Red + "INPUT INCORRECT" + Colour.Reset)
                             input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
             if exit_input == 0:
                 file_path = path.join(commond_path, 'Showing', showing, 'starttime.txt')
@@ -4808,7 +4808,7 @@ def admin_version() -> bool:
                                                     if int(str_input2) == 1 or int(str_input2) == 3 or int(str_input2) == 5 or int(str_input2) == 7 or int(str_input2) == 8 or int(str_input2) == 10 or int(str_input2) == 12:
                                                         if int(str_input1) > 31 and int(str_input1) != 0:
                                                             str_input = ""
-                                                            print(Colour.Red + "INPUT INCORRENT" + Colour.Reset)
+                                                            print(Colour.Red + "INPUT INCORRECT" + Colour.Reset)
                                                             input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
                                                     elif int(str_input2) == 2:
                                                         temp = int(str_input3)
@@ -4817,29 +4817,29 @@ def admin_version() -> bool:
                                                         if temp == 0:
                                                             if int(str_input1) > 29 and int(str_input1) != 0:
                                                                 str_input = ""
-                                                                print(Colour.Red + "INPUT INCORRENT" + Colour.Reset)
+                                                                print(Colour.Red + "INPUT INCORRECT" + Colour.Reset)
                                                                 input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
                                                         else:
                                                             if int(str_input1) > 28 and int(str_input1) != 0:
                                                                 str_input = ""
-                                                                print(Colour.Red + "INPUT INCORRENT" + Colour.Reset)
+                                                                print(Colour.Red + "INPUT INCORRECT" + Colour.Reset)
                                                                 input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
                                                     else:
                                                         if int(str_input1) > 30 and int(str_input1) != 0:
                                                             str_input = ""
-                                                            print(Colour.Red + "INPUT INCORRENT" + Colour.Reset)
+                                                            print(Colour.Red + "INPUT INCORRECT" + Colour.Reset)
                                                             input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
                                                 else:
                                                     str_input = ""
-                                                    print(Colour.Red + "INPUT INCORRENT" + Colour.Reset)
+                                                    print(Colour.Red + "INPUT INCORRECT" + Colour.Reset)
                                                     input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
                                             else:
                                                 str_input = ""
-                                                print(Colour.Red + "INPUT INCORRENT" + Colour.Reset)
+                                                print(Colour.Red + "INPUT INCORRECT" + Colour.Reset)
                                                 input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
                                         else:
                                             str_input = ""
-                                            print(Colour.Red + "INPUT INCORRENT" + Colour.Reset)
+                                            print(Colour.Red + "INPUT INCORRECT" + Colour.Reset)
                                             input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
                             if exit_input == 0:
                                 file_path = path.join(commond_path, 'Film', filmname, 'timelength.txt')
