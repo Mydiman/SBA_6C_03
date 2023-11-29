@@ -60,11 +60,17 @@ def stage1_print() -> int:
         f = open(file_path, "r")
         film_timelength.append(str(f.readline()))
         f.close()
-    for i in range(count_film):
-        print("{:<{}}   -->   {:<{}}   {:<{}}   {} minutes".format(i + 1, len_count_film, film_name [i], film_len, film_rating [i], 3, film_timelength [i]))
-    print("{:<{}}   -->   Log out".format(i + 2, len_count_film))
-    print("")
-    return i + 2
+    if count_film != 0:
+        for i in range(1, count_film + 1):
+            print("{:<{}}   -->   {:<{}}   {:<{}}   {} minutes".format(i, len_count_film, film_name [i - 1], film_len, film_rating [i - 1], 3, film_timelength [i - 1]))
+        print("{:<{}}   -->   Log out".format(i + 1, len_count_film))
+        print("")
+        return i + 2
+    else:
+        print("There is no films on showing.")
+        print("1   -->   Log out")
+        print("")
+        return 1
 
 
 
@@ -127,95 +133,90 @@ def stage2_print(film) -> int:
 def stage3_print(sub_film_name: str, sub_dimension: str, sub_language: str, sub_time_length: int, sub_price: int, sub_rating: str) -> int:
     print(Colour.Underline + "Upcoming Showings of {} {} {}".format(sub_film_name, sub_dimension, sub_language) + Colour.Reset)
     print("")
-    if not path.exists(path.join(commond_path, 'Showing', '__Film information', sub_film_name, sub_dimension, sub_language, 'Showing.txt')):
-        print("There is no showing matching condition.")
-        print("1 <-- Go back")
-        print("")
-        return 1
-    else:
-        file_path = path.join('{}'.format(commond_path), 'Showing', '__Film information', '{}'.format(sub_film_name), '{}'.format(sub_dimension), '{}'.format(sub_language), 'Showingnum.txt')
+    file_path = path.join('{}'.format(commond_path), 'Showing', '__Film information', '{}'.format(sub_film_name), '{}'.format(sub_dimension), '{}'.format(sub_language), 'Showingnum.txt')
+    f = open(file_path)
+    x: int = int(f.readline())
+    showing_num = 0
+    f.close()
+    file_path = path.join('{}'.format(commond_path), 'Showing', '__Film information', '{}'.format(sub_film_name), '{}'.format(sub_dimension), '{}'.format(sub_language), 'Showing.txt')
+    showing = []
+    f = open(file_path)
+    for i in range(x):
+        if f.readline() [:-1] == "upcoming":
+            showing.append(f.readline() [:-1])
+            showing_num += 1
+        else:
+            f.readline()
+    f.close()
+    len_showing_num = len(str(showing_num + 1))
+    format_time = "%d/%m/%y %H:%M:%S"
+    temp = []
+    for i in range(showing_num):
+        file_path = path.join('{}'.format(commond_path), 'Showing', '{}'.format(showing [i]), 'starttime.txt')
         f = open(file_path)
-        x: int = int(f.readline())
-        showing_num = 0
+        temp.append(f.readline())
         f.close()
-        file_path = path.join('{}'.format(commond_path), 'Showing', '__Film information', '{}'.format(sub_film_name), '{}'.format(sub_dimension), '{}'.format(sub_language), 'Showing.txt')
-        showing = []
+    start_time = []
+    for i in temp:
+        start_time.append(datetime.strptime(i, format_time))
+    end_time = []
+    for i in range(showing_num):
+        end_time.append(start_time [i] + timedelta(minutes = sub_time_length))
+    house = []
+    for i in range(showing_num):
+        file_path = path.join('{}'.format(commond_path), 'Showing', '{}'.format(showing [i]), 'house.txt')
         f = open(file_path)
-        for i in range(x):
-            if f.readline() [:-1] == "upcoming":
-                showing.append(f.readline() [:-1])
-                showing_num += 1
+        house.append(f.readline())
+        f.close()
+    avail_seat = []
+    all_seat = []
+    for i in range(showing_num):
+        file_path = path.join('{}'.format(commond_path), 'Showing', '{}'.format(showing [i]), 'houseplan.txt')
+        f = open(file_path)
+        row = 0
+        avail_count = 0
+        while True:
+            temp = f.readline() [:-1]
+            if temp == "":
+                break
             else:
-                f.readline()
+                column = len(temp)
+                row += 1
+                for k in range(column):
+                    if temp [k] == "0":
+                        avail_count += 1
+        avail_seat.append(avail_count)
+        all_seat.append(column * row)
         f.close()
-        len_showing_num = len(str(showing_num + 1))
-        format_time = "%d/%m/%y %H:%M:%S"
-        temp = []
-        for i in range(showing_num):
-            file_path = path.join('{}'.format(commond_path), 'Showing', '{}'.format(showing [i]), 'starttime.txt')
-            f = open(file_path)
-            temp.append(f.readline())
-            f.close()
-        start_time = []
-        for i in temp:
-            start_time.append(datetime.strptime(i, format_time))
-        end_time = []
-        for i in range(showing_num):
-            end_time.append(start_time [i] + timedelta(minutes = sub_time_length))
-        house = []
-        for i in range(showing_num):
-            file_path = path.join('{}'.format(commond_path), 'Showing', '{}'.format(showing [i]), 'house.txt')
-            f = open(file_path)
-            house.append(f.readline())
-            f.close()
-        avail_seat = []
-        all_seat = []
-        for i in range(showing_num):
-            file_path = path.join('{}'.format(commond_path), 'Showing', '{}'.format(showing [i]), 'houseplan.txt')
-            f = open(file_path)
-            row = 0
-            avail_count = 0
-            while True:
-                temp = f.readline() [:-1]
-                if temp == "":
-                    break
-                else:
-                    column = len(temp)
-                    row += 1
-                    for k in range(column):
-                        if temp [k] == "0":
-                            avail_count += 1
-            avail_seat.append(avail_count)
-            all_seat.append(column * row)
-            f.close()
-        i = 0
-        count = 0
-        list_showing = []
-        for i in range(showing_num):
-            if start_time [i - 1] <= datetime.now() + timedelta(days = 7):
-                count += 1
-                list_showing.append(i)
-        for i in range(count):
-            for j in range(i + 1, count):
-                if start_time [list_showing [j - 1]] > start_time [list_showing [j]]:
-                    temp = start_time [list_showing [j - 1]]
-                    start_time [list_showing [j - 1]] = start_time [list_showing [j]]
-                    start_time [list_showing [j]] = temp
-                    temp = showing [list_showing [j - 1]]
-                    showing [list_showing [j - 1]] = showing [list_showing [j]]
-                    showing [list_showing [j]] = temp
-                    temp = end_time [list_showing [j - 1]]
-                    end_time [list_showing [j - 1]] = end_time [list_showing [j]]
-                    end_time [list_showing [j]] = temp
-                    temp = house [list_showing [j - 1]]
-                    house [list_showing [j - 1]] = house [list_showing [j]]
-                    house [list_showing [j]] = temp
-                    temp = avail_seat [list_showing [j - 1]]
-                    avail_seat [list_showing [j - 1]] = avail_seat [list_showing [j]]
-                    avail_seat [list_showing [j]] = temp
-                    temp = all_seat [list_showing [j - 1]]
-                    all_seat [list_showing [j - 1]] = all_seat [list_showing [j]]
-                    all_seat [list_showing [j]] = temp
+    i = 0
+    count = 0
+    list_showing = []
+    for i in range(showing_num):
+        if start_time [i - 1] <= datetime.now() + timedelta(days = 7):
+            count += 1
+            list_showing.append(i)
+    for i in range(count):
+        for j in range(i + 1, count):
+            if start_time [list_showing [j - 1]] > start_time [list_showing [j]]:
+                temp = start_time [list_showing [j - 1]]
+                start_time [list_showing [j - 1]] = start_time [list_showing [j]]
+                start_time [list_showing [j]] = temp
+                temp = showing [list_showing [j - 1]]
+                showing [list_showing [j - 1]] = showing [list_showing [j]]
+                showing [list_showing [j]] = temp
+                temp = end_time [list_showing [j - 1]]
+                end_time [list_showing [j - 1]] = end_time [list_showing [j]]
+                end_time [list_showing [j]] = temp
+                temp = house [list_showing [j - 1]]
+                house [list_showing [j - 1]] = house [list_showing [j]]
+                house [list_showing [j]] = temp
+                temp = avail_seat [list_showing [j - 1]]
+                avail_seat [list_showing [j - 1]] = avail_seat [list_showing [j]]
+                avail_seat [list_showing [j]] = temp
+                temp = all_seat [list_showing [j - 1]]
+                all_seat [list_showing [j - 1]] = all_seat [list_showing [j]]
+                all_seat [list_showing [j]] = temp
+    if count != 0:
         for i in range(count):
             print("{:<{}} --> {}{}{}".format(count, len_showing_num, Colour.Underline, showing [list_showing [i]], Colour.Reset))
             print("{:<{}}     Time : {} - {}".format(" ", len_showing_num, str(start_time [list_showing [i]]), str(end_time [list_showing [i]])))
@@ -230,6 +231,11 @@ def stage3_print(sub_film_name: str, sub_dimension: str, sub_language: str, sub_
         print("{:<{}} --> Go back".format(count + 1, len_showing_num))
         print("")
         return count + 1
+    else:
+        print("There is no showings matching condition.")
+        print("1 <-- Go back")
+        print("")
+        return 1
 
 
 

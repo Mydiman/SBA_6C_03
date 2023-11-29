@@ -12,6 +12,7 @@ from .Colour import Colour
 from .Seatingplan import print_plan
 from .UpdateDatetimeAll import update_status
 from .According import filmname_accord, housename_accord, ticket_accord
+from .Resetsystem import reset_sys
 
 
 
@@ -311,12 +312,18 @@ def print_201() -> int:
         housename.append(f.readline() [:-1])
     f.close()
     len_house = len(str(house + 2))
-    for i in range(house):
-        print("{:<{}} <-- {}".format(i + 1, len_house, housename [i]))
-    print("{:<{}} <-- Create a new house".format(i + 2, len_house))
-    print("{:<{}} <-- Go back".format(i + 3, len_house))
-    print("")
-    return i + 3
+    if house != 0:
+        for i in range(house):
+            print("{:<{}} <-- {}".format(i + 1, len_house, housename [i]))
+        print("{:<{}} <-- Create a new house".format(i + 2, len_house))
+        print("{:<{}} <-- Go back".format(i + 3, len_house))
+        print("")
+        return i + 3
+    else:
+        print("1 <-- Create a new house")
+        print("2 <-- Go back")
+        print("")
+        return 2
 
 
 
@@ -421,13 +428,18 @@ def print_301() -> int:
         filmname.append(f.readline() [:-1])
     f.close()
     len_film = len(str(film + 2))
-    i = -1
-    for i in range(film):
-        print("{:<{}} <-- {}".format(i + 1, len_film, filmname [i]))
-    print("{:<{}} <-- Film addition".format(i + 2, len_film))
-    print("{:<{}} <-- Go back".format(i + 3, len_film))
-    print("")
-    return i + 3
+    if film != 0:
+        for i in range(film):
+            print("{:<{}} <-- {}".format(i + 1, len_film, filmname [i]))
+        print("{:<{}} <-- Film addition".format(i + 2, len_film))
+        print("{:<{}} <-- Go back".format(i + 3, len_film))
+        print("")
+        return i + 3
+    else:
+        print("1 <-- Film addition")
+        print("2 <-- Go back")
+        print("")
+        return 2
 
 
 
@@ -731,14 +743,39 @@ def print_313(filmname) -> str:
 def print_401() -> int:
     print(Colour.Underline + "Showing" + Colour.Reset)
     print("")
-    print("""1 <-- Filter with film
+    temp = 0
+    file_path = path.join(commond_path, 'House', 'housename.txt')
+    f = open(file_path, "r")
+    if f.readline() [:-1] == "0":
+        temp += 1
+    file_path = path.join(commond_path, 'Film', 'filmname.txt')
+    f = open(file_path, "r")
+    if f.readline() [:-1] == "0":
+        temp += 2
+    if temp == 0:
+        print("""1 <-- Filter with film
 2 <-- Filter with house
 3 <-- Filter with status
 4 <-- Search showing
 5 <-- Create showing 
 6 <-- Go back""")
-    print("")
-    return 6
+        print("")
+        return 6
+    elif temp == 1:
+        print("""There is no houses in the system.
+1 <-- Go back""")
+        print("")
+        return 1
+    elif temp == 2:
+        print("""There is no films in the system.
+1 <-- Go back""")
+        print("")
+        return 1
+    else:
+        print("""There is no houses and films in the system.
+1 <-- Go back""")
+        print("")
+        return 1
 
 
 
@@ -1116,9 +1153,45 @@ def print_412() -> None:
     f.close()
     file_path = path.join(commond_path, 'Showing', 'Showing.txt')
     f = open(file_path, "r")
+    showing = []
     for i in range(count_showing):
-        print(f.readline() [:-1])
-    print("")
+        showing.append(f.readline() [:-1])
+    f.close()
+    missshowing = []
+    file_path = path.join(commond_path, 'Showing', 'Missshowing.txt')
+    f = open(file_path, "r")
+    while True:
+        line = f.readline() [:-1]
+        if line == "":
+            break
+        else:
+            count_showing += 1
+            missshowing.append(line)
+            showing.append(line)
+    f.close()
+    len_count_showing = len(str(count_showing + 1))
+    for i in range(count_showing):
+        for j in range(i + 1, count_showing):
+            if showing [j - 1] >= showing [j]:
+                temp = showing [j - 1]
+                showing [j - 1] = showing [j]
+                showing [j] = temp
+    if count_showing != 0:
+        for i in range(count_showing):
+            error = 0
+            for j in missshowing:
+                if showing [i] == j:
+                    error = 1
+                    print("{:<{}} <-- {} (Deleted)".format(i + 1, len_count_showing, showing [i]))
+            if error == 0:
+                print("{:<{}} <-- {}".format(i + 1, len_count_showing, showing [i]))
+        print("{:<{}} <-- Go back".format(i + 2, len_count_showing))
+        print("")
+        return i + 2
+    else:
+        print("There is no showings in the system.")
+        print("1 <-- Go back")
+        return 1
 
 
 
@@ -1749,6 +1822,38 @@ def print_424(mode, filmname, dimension, language, house) -> int or str:
         print("Input \"exit\" to exit")
         print("")
         return showing
+    
+
+
+def print_501() -> str:
+    bigrow = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+    smallrow = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+    code = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m", "Q", "W", "E", "R", "T" ,"Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M"]
+    print(Colour.Underline + "Reset system" + Colour.Reset)
+    print(Colour.Red + "\u26a0\u26a0\u26a0All data of the system will be delete and impossible to be recovery!\u26a0\u26a0\u26a0" + Colour.Reset)
+    num_check = 0
+    small_check = 0
+    big_check = 0
+    while num_check == 0 or small_check == 0 or big_check == 0:
+        num_check = 0
+        small_check = 0
+        big_check = 0
+        shuffle(code)
+        for i in range(10):
+            for j in range(26):
+                if code [i] == bigrow [j]:
+                    big_check = 1
+                elif code [i] == smallrow [j]:
+                    small_check = 1
+            if code [i].isdecimal():
+                num_check = 1
+    temp = ""
+    for i in range(10):
+        temp = temp + code [i]
+    print("Enter the security code thrice to reset system.")
+    print("")
+    print("Security code: " + temp)
+    return temp
 
 
 
@@ -4007,37 +4112,54 @@ def admin_version() -> bool:
                 stage = 413
         #showing > search
         elif stage == 412:
-            str_input = ""
-            exit_input = 0
-            while str_input == "" and exit_input == 0:
-                clearscreen()
-                print_412()
-                str_input = input("Input showing: ")
-                while str_input != "" and str_input [0] == " ":
-                    temp = ""
-                    for i in range(1, len(str_input)):
-                        temp += str_input [i]
-                    str_input = temp
-                while str_input != "" and str_input [len(str_input) - 1] == " ":
-                    temp = ""
-                    for i in range(0, len(str_input) - 1):
-                        temp += str_input [i]
-                    str_input = temp
-                if str_input == "exit" or str_input == "Exit" or str_input == "EXIT":
-                    exit_input = 1
-                else:
-                    if str_input == "":
-                        print(Colour.Red + "INPUT CANNOT BE EMPTY" + Colour.Reset)
-                        input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
+            int_input = 0
+            choose = 0
+            while int_input == 0 or int_input > choose:
+                choose = print_412()
+                int_input = input_int_check("Input number: ", choose)
+                file_path = path.join(commond_path, 'Showing', 'Showingnum.txt')
+            if int_input == choose:
+                stage = 401
+            else:
+                f = open(file_path, "r")
+                count_showing = int(f.readline())
+                f.close()
+                file_path = path.join(commond_path, 'Showing', 'Showing.txt')
+                f = open(file_path, "r")
+                showing = []
+                for i in range(count_showing):
+                    showing.append(f.readline() [:-1])
+                f.close()
+                missshowing = []
+                file_path = path.join(commond_path, 'Showing', 'Missshowing.txt')
+                f = open(file_path, "r")
+                while True:
+                    line = f.readline() [:-1]
+                    if line == "":
+                        break
                     else:
-                        if (str_input [0] == "S" or str_input [0] == "s") and str_input [1:].isdecimal and len(str_input) == 11:
-                            showing = "S" + str_input [1:]
-                            last_stage = 412
-                            stage = 413
-                        else:
-                            str_input = ""
-                            print(Colour.Red + "INPUT INCORRECT" + Colour.Reset)
-                            input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
+                        count_showing += 1
+                        missshowing.append(line)
+                        showing.append(line)
+                f.close()
+                len_count_showing = len(str(count_showing + 1))
+                for i in range(count_showing):
+                    for j in range(i + 1, count_showing):
+                        if showing [j - 1] >= showing [j]:
+                            temp = showing [j - 1]
+                            showing [j - 1] = showing [j]
+                            showing [j] = temp
+                error = 0
+                for j in missshowing:
+                    if showing [int_input - 1] == j:
+                        error = 1
+                if error == 1:
+                    print(Colour.Red + "THE SHOWING IS DELETED" + Colour.Reset)
+                    input(Colour.Yellow + "ENTER TO CONTINUE" + Colour.Reset)
+                else:
+                    showing = showing [int_input - 1]
+                    last_stage = 412
+                    stage = 413
         #showing > check
         elif stage == 413:
             int_input = 0
@@ -5042,4 +5164,23 @@ def admin_version() -> bool:
                                 stage = 401
         #reset system
         elif stage == 501:
-            ...
+            int_input = 0
+            verification_code = print_501()
+            recond = []
+            recond.append(input(""))
+            if recond [0] == verification_code:
+                clearscreen()
+                verification_code = print_501()
+                print(recond [0])
+                recond.append(input(""))
+                if recond [1] == verification_code:
+                    clearscreen()
+                    verification_code = print_501()
+                    print(recond [0])
+                    print(recond [1])
+                    recond.append(input(""))
+                    if recond [2] == verification_code:
+                        int_input = 1
+            if int_input != 0:
+                reset_sys()
+            stage = 1
