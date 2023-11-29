@@ -32,7 +32,7 @@ def main() -> None:
 	byebye = 0
 	error = 0
 	while True:
-		#try:
+		try:
 			if error == 0:
 				clearscreen()
 				login_version = log_in()
@@ -71,6 +71,6 @@ def main() -> None:
 						print("\rShuting down in {} seconds {}".format(3 - i, j), end = "")
 						sleep(0.25)
 				exit()
-		#except:
-		#	exception_type = exc_info() [0]
-		#	error = 1
+		except:
+			exception_type = exc_info() [0]
+			error = 1
