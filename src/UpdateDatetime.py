@@ -16,12 +16,12 @@ def update_status_film_inf(showing, current_status: str) -> None:
     dimension = f.readline() [:-1]
     language = f.readline() [:-1]
     f.close()
-    file_path = path.join('{}'.format(commond_path), 'Showing', '__film information', '{}'.format(film), '{}'.format(dimension), '{}'.format(language), 'Showingnum.txt')
+    file_path = path.join('{}'.format(commond_path), 'Showing', '__Film information', '{}'.format(film), '{}'.format(dimension), '{}'.format(language), 'Showingnum.txt')
     f = open(file_path, "r")
     count = int(f.readline())
     f.close()
     line = []
-    file_path = path.join('{}'.format(commond_path), 'Showing', '__film information', '{}'.format(film), '{}'.format(dimension), '{}'.format(language), 'Showing.txt')
+    file_path = path.join('{}'.format(commond_path), 'Showing', '__Film information', '{}'.format(film), '{}'.format(dimension), '{}'.format(language), 'Showing.txt')
     f = open(file_path)
     for i in range(count * 2):
         line.append(str(f.readline()))
