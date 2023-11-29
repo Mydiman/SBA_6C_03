@@ -190,19 +190,43 @@ def stage3_print(sub_film_name: str, sub_dimension: str, sub_language: str, sub_
             f.close()
         i = 0
         count = 0
-        for i in range(1, showing_num + 1):
+        list_showing = []
+        for i in range(showing_num):
             if start_time [i - 1] <= datetime.now() + timedelta(days = 7):
                 count += 1
-                print("{:<{}} --> {}{}{}".format(count, len_showing_num, Colour.Underline, showing [i - 1], Colour.Reset))
-                print("{:<{}}     Time : {} - {}".format(" ", len_showing_num, str(start_time [i - 1]), str(end_time [i - 1])))
-                print("{:<{}}     House: {}".format(" ", len_showing_num, house [i - 1]))
-                if avail_seat [i - 1] == 0:
-                    haha = Colour.Red
-                elif avail_seat [i - 1] / all_seat [i - 1] <= 0.5:
-                    haha = Colour.Yellow
-                else:
-                    haha = Colour.Green
-                print("{:<{}}     Seat : {}{}{}/{}".format(" ", len_showing_num, haha, avail_seat [i - 1], Colour.Reset, all_seat [i - 1]))
+                list_showing.append(i)
+        for i in range(count):
+            for j in range(i + 1, count):
+                if start_time [list_showing [j - 1]] > start_time [list_showing [j]]:
+                    temp = start_time [list_showing [j - 1]]
+                    start_time [list_showing [j - 1]] = start_time [list_showing [j]]
+                    start_time [list_showing [j]] = temp
+                    temp = showing [list_showing [j - 1]]
+                    showing [list_showing [j - 1]] = showing [list_showing [j]]
+                    showing [list_showing [j]] = temp
+                    temp = end_time [list_showing [j - 1]]
+                    end_time [list_showing [j - 1]] = end_time [list_showing [j]]
+                    end_time [list_showing [j]] = temp
+                    temp = house [list_showing [j - 1]]
+                    house [list_showing [j - 1]] = house [list_showing [j]]
+                    house [list_showing [j]] = temp
+                    temp = avail_seat [list_showing [j - 1]]
+                    avail_seat [list_showing [j - 1]] = avail_seat [list_showing [j]]
+                    avail_seat [list_showing [j]] = temp
+                    temp = all_seat [list_showing [j - 1]]
+                    all_seat [list_showing [j - 1]] = all_seat [list_showing [j]]
+                    all_seat [list_showing [j]] = temp
+        for i in range(count):
+            print("{:<{}} --> {}{}{}".format(count, len_showing_num, Colour.Underline, showing [list_showing [i]], Colour.Reset))
+            print("{:<{}}     Time : {} - {}".format(" ", len_showing_num, str(start_time [list_showing [i]]), str(end_time [list_showing [i]])))
+            print("{:<{}}     House: {}".format(" ", len_showing_num, house [list_showing [i]]))
+            if avail_seat [list_showing [i]] == 0:
+                haha = Colour.Red
+            elif avail_seat [list_showing [i]] / all_seat [list_showing [i]] <= 0.5:
+                haha = Colour.Yellow
+            else:
+                haha = Colour.Green
+            print("{:<{}}     Seat : {}{}{}/{}".format(" ", len_showing_num, haha, avail_seat [list_showing [i]], Colour.Reset, all_seat [list_showing [i]]))
         print("{:<{}} --> Go back".format(count + 1, len_showing_num))
         print("")
         return count + 1
@@ -273,6 +297,7 @@ def eng_to_int(strinput: str) -> int:
         return -1
     else:
         return (num - 1)
+
 
 
 def int_to_eng(a) -> str:
