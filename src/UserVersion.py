@@ -256,25 +256,23 @@ def stage5_print(showing, list_ticket, price, st_price, count_ticket, count_stud
 
 def eng_to_int(strinput: str) -> int:
     bigrow = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
-    smallrow = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-    i = len(strinput)
+    strinput = strinput.upper()
     num = 0
-    while i > 0 and strinput != "":
+    i = 0
+    while i < len(strinput):
         error = 1
-        for j in range(0, 26):
-            if strinput [i - 1] == smallrow [j] or strinput [i - 1] == bigrow [j]:
-                num += j * (26 ** (i - 1))
+        for j in range(1, 27):
+            if strinput [i] == bigrow [j - 1]:
+                num = num * 26 + j
                 error = 0
-                j = 26
-        if error == 1:
-            i = -1
+        if error == 0:
+            i += 1
         else:
-            i -= 1
-    if i == 0 and strinput != "":
-        return num
-    else:
+            i = len(strinput)
+    if error == 1:
         return -1
-
+    else:
+        return (num - 1)
 
 
 def int_to_eng(a) -> str:
