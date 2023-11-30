@@ -277,8 +277,12 @@ def print_108() -> None:
             list_time.append(line)
     print(Colour.Underline + "Login time of user" + Colour.Reset)
     print("")
+    temp = 0
     for i in list_time:
+        temp = 1
         print(i)
+    if temp == 0:
+        print("There is no login time for user account.")
     print("")
     print("1 <-- Go back")
     print("")
@@ -298,8 +302,12 @@ def print_109() -> None:
             list_time.append(line)
     print(Colour.Underline + "Login time of admin" + Colour.Reset)
     print("")
+    temp = 0
     for i in list_time:
+        temp = 1
         print(i)
+    if temp == 0:
+        print("There is no login time for admin account.")
     print("")
     print("1 <-- Go back")
     print("")
@@ -341,7 +349,7 @@ def print_202(house: str) -> int:
     print("""
 1 <-- Change the status of a seats
 2 <-- Rename the house
-3 <-- {}\u26a0{}{}Delete the house{}{}\u26a0{}
+3 <-- {}\u26a0 {}{}Delete the house{}{} \u26a0{}
 4 <-- Go back
 
 """.format(Colour.Red, Colour.Reset, Colour.Underline, Colour.Reset, Colour.Red, Colour.Reset))
@@ -396,7 +404,7 @@ def print_206(house) -> str:
     bigrow = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
     smallrow = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
     code = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m", "Q", "W", "E", "R", "T" ,"Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M"]
-    print(Colour.Red + "\u26a0\u26a0\u26a0All data of { " + house + " } will be delete and impossible to be recovery!\u26a0\u26a0\u26a0" + Colour.Reset)
+    print(Colour.Red + "\u26a0\u26a0\u26a0 All data of { " + house + " } will be delete and impossible to be recovery! \u26a0\u26a0\u26a0" + Colour.Reset)
     num_check = 0
     small_check = 0
     big_check = 0
@@ -534,7 +542,7 @@ def print_302(filmname) -> int:
 4 <-- Change language
 5 <-- Change dimension
 6 <-- Change price
-7 <-- {}\u26a0{}{}Delete the film{}{}\u26a0{}
+7 <-- {}\u26a0 {}{}Delete the film{}{} \u26a0{}
 8 <-- Go back""".format(Colour.Red, Colour.Reset, Colour.Underline, Colour.Reset, Colour.Red, Colour.Reset))
     print("")
     return 8
@@ -719,7 +727,7 @@ def print_313(filmname) -> str:
     bigrow = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
     smallrow = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
     code = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m", "Q", "W", "E", "R", "T" ,"Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M"]
-    print(Colour.Red + "\u26a0\u26a0\u26a0All data of { " + filmname + " } will be delete and impossible to be recovery!\u26a0\u26a0\u26a0" + Colour.Reset)
+    print(Colour.Red + "\u26a0\u26a0\u26a0 All data of { " + filmname + " } will be delete and impossible to be recovery! \u26a0\u26a0\u26a0" + Colour.Reset)
     num_check = 0
     small_check = 0
     big_check = 0
@@ -1547,7 +1555,7 @@ def print_422(ticket) -> str:
     bigrow = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
     smallrow = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
     code = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m", "Q", "W", "E", "R", "T" ,"Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M"]
-    print(Colour.Red + "\u26a0\u26a0\u26a0All data of { " + ticket + " } will be delete and impossible to be recovery!\u26a0\u26a0\u26a0" + Colour.Reset)
+    print(Colour.Red + "\u26a0\u26a0\u26a0 All data of { " + ticket + " } will be delete and impossible to be recovery! \u26a0\u26a0\u26a0" + Colour.Reset)
     num_check = 0
     small_check = 0
     big_check = 0
@@ -1578,7 +1586,7 @@ def print_423(showing) -> str:
     bigrow = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
     smallrow = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
     code = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m", "Q", "W", "E", "R", "T" ,"Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M"]
-    print(Colour.Red + "\u26a0\u26a0\u26a0All data of { " + showing + " } will be delete and impossible to be recovery!\u26a0\u26a0\u26a0" + Colour.Reset)
+    print(Colour.Red + "\u26a0\u26a0\u26a0 All data of { " + showing + " } will be delete and impossible to be recovery! \u26a0\u26a0\u26a0" + Colour.Reset)
     num_check = 0
     small_check = 0
     big_check = 0
@@ -1836,7 +1844,7 @@ def print_501() -> str:
     smallrow = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
     code = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m", "Q", "W", "E", "R", "T" ,"Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M"]
     print(Colour.Underline + "Reset system" + Colour.Reset)
-    print(Colour.Red + "\u26a0\u26a0\u26a0All data of the system will be delete and impossible to be recovery!\u26a0\u26a0\u26a0" + Colour.Reset)
+    print(Colour.Red + "\u26a0\u26a0\u26a0 All data of the system will be delete and impossible to be recovery! \u26a0\u26a0\u26a0" + Colour.Reset)
     num_check = 0
     small_check = 0
     big_check = 0
@@ -5127,4 +5135,4 @@ def admin_version() -> bool:
                 int_input = 1
             if int_input != 0:
                 reset_sys()
-            stage = 1
+            stage = 0
