@@ -321,7 +321,7 @@ def print_201() -> int:
         return i + 3
     else:
         print("1 <-- Create a new house")
-        print("2 <-- Go back")
+        print(" <-- Go back")
         print("")
         return 2
 
@@ -3888,7 +3888,9 @@ def admin_version() -> bool:
                 choose = print_401()
                 int_input = input_int_check("Input number: ", choose)
                 clearscreen()
-            if int_input == 1:
+            if int_input == choose:
+                stage = 1
+            elif int_input == 1:
                 stage = 402
             elif int_input == 2:
                 stage = 407
@@ -3898,8 +3900,6 @@ def admin_version() -> bool:
                 stage = 412
             elif int_input == 5:
                 stage = 424
-            else:
-                stage = 1
         #showing > film
         elif stage == 402:
             int_input = 0
