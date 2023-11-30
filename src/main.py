@@ -62,9 +62,11 @@ def main() -> None:
 			if login_version == 1:
 				clearscreen()
 				byebye = admin_version()
+				login_version = 3
 			elif login_version == 2:
 				clearscreen()
 				user_version()
+				login_version = 3
 			if byebye == 1:
 				list_quit = ["\\", "|", "/", "-"]
 				for i in range(0, 3):
