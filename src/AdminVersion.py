@@ -3550,7 +3550,7 @@ def admin_version() -> bool:
                             print("New price of {}        : ${}".format(dimension [j], record [j]))
                             print("New student price of {}: ${}".format(dimension [j], record1 [j]))
                     else:
-                        record1.append(str_input)
+                        record1.append(str(int(str_input)))
             price = ""
             for i in range(count_price):
                 price = price + record [i] + "\n"
