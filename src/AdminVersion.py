@@ -2903,10 +2903,7 @@ def admin_version() -> bool:
                         temp += str_input [i]
                     str_input = temp
                 while str_input != "" and (str_input [len(str_input) - 1] == " " or str_input [len(str_input) - 1] == "."):
-                    temp = ""
-                    for i in range(0, len(str_input) - 1):
-                        temp += str_input [i]
-                    str_input = temp
+                    str_input = str_input [:-1]
                 if str_input == "":
                     print(Colour.Red + "NAME OF A LANGUAGE CANNOT BE EMPTY" + Colour.Reset)
                     input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
@@ -2919,8 +2916,9 @@ def admin_version() -> bool:
                     print(Colour.Red + "NAME OF A LANGUAGE MUST BE WITHIN ASCII 32 to 126" + Colour.Reset)
                     input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
                 for i in range(count_language):
-                    if str_input.upper() == line [i].upper():
-                        str_input = 0
+                    if str_input != 0:
+                        if str_input.upper() == line [i].upper():
+                            str_input = 0
             if str_input == 0:
                 stage = 306
             else:
