@@ -3149,7 +3149,7 @@ def admin_version() -> bool:
                     for i in range(1, len(str_input)):
                         temp += str_input [i]
                     str_input = temp
-                while str_input != "" and (str_input [len(str_input) - 1] == " " or str_input [len(str_input) - 1] == " "):
+                while str_input != "" and str_input [len(str_input) - 1] == " ":
                     temp = ""
                     for i in range(0, len(str_input) - 1):
                         temp += str_input [i]
@@ -3158,7 +3158,7 @@ def admin_version() -> bool:
                     print(Colour.Red + "NAME OF A DIMENSION CANNOT BE EMPTY" + Colour.Reset)
                     input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
                 elif str_input [:-1].isdigit() and (str_input [len(str_input) - 1] == "D" or str_input [len(str_input) - 1] == "d"):
-                    str_input = str_input [:-1] + "D"
+                    str_input = str(int(str_input [:-1])) + "D"
                 else:
                     str_input = ""
                     print(Colour.Red + "NAME OF A DIMENSION MUST BE \"\{INTEGER\}\"" + Colour.Reset)
