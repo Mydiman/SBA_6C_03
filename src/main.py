@@ -30,7 +30,8 @@ def main() -> None:
 	login_version = 3
 	byebye = 0
 	error = 0
-	if path.exists(path.join(path.dirname(path.realpath(__file__)), 'Data'))
+	if path.exists(path.join(path.dirname(path.realpath(__file__)), 'Data')):
+		reset_sys()
 	while True:
 		try:
 			if error == 0:
