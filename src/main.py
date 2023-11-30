@@ -27,10 +27,10 @@ from .Resetsystem import reset_sys
 def main() -> None:
 	clearscreen()
 	print(Colour.Reset)
-	#Don't forgot check data folder exist!!!
 	login_version = 3
 	byebye = 0
 	error = 0
+	if path.exists(path.join(path.dirname(path.realpath(__file__)), 'Data'))
 	while True:
 		try:
 			if error == 0:
