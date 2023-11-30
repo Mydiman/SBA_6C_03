@@ -3161,7 +3161,7 @@ def admin_version() -> bool:
                     str_input = str(int(str_input [:-1])) + "D"
                 else:
                     str_input = ""
-                    print(Colour.Red + "NAME OF A DIMENSION MUST BE \"\{INTEGER\}\"" + Colour.Reset)
+                    print(Colour.Red + "NAME OF A DIMENSION MUST BE { " + "INTEGER" " }" + Colour.Reset)
                     input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
                 for i in range(count_dimension):
                     if str_input == line [i]:
