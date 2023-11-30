@@ -78,5 +78,5 @@ def reset_sys():
     f.close()
     file_path = path.join(commond_path, 'Showing', 'Showingnum.txt')
     f = open(file_path, "w")
-    f.write("")
+    f.write("0\n")
     f.close()
