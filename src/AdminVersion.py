@@ -2913,7 +2913,7 @@ def admin_version() -> bool:
                     print(Colour.Red + "NAME OF A LANGUAGE MUST BE WITHIN ASCII 32 to 126" + Colour.Reset)
                     input(Colour.Yellow + "ENTER TO RETRY" + Colour.Reset)
                 for i in range(count_language):
-                    if str_input == line [i]:
+                    if str_input.upper() == line [i].upper():
                         str_input = 0
             if str_input == 0:
                 stage = 306
@@ -3139,7 +3139,7 @@ def admin_version() -> bool:
             while str_input == "":
                 clearscreen()
                 print_310(filmname)
-                str_input = input("Additive dimension: ")
+                str_input = input("Additive dimension: ").upper()
                 while str_input != "" and str_input [0] == " ":
                     temp = ""
                     for i in range(1, len(str_input)):
