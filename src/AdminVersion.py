@@ -2326,9 +2326,8 @@ def admin_version() -> bool:
         elif stage == 206:
             int_input = 0
             verification_code = print_206(house)
-            record = []
-            record.append(input(""))
-            if record [0] == verification_code:
+            record = input("")
+            if record == verification_code:
                 int_input = 1
                 file_path = path.join(commond_path, 'House', 'housename.txt')
                 line = []
@@ -3567,8 +3566,7 @@ def admin_version() -> bool:
         elif stage == 313:
             int_input = 0
             verification_code = print_313(filmname)
-            record = []
-            record.append(input(""))
+            record = input("")
             if record [0] == verification_code:
                 int_input = 1
                 file_path = path.join(commond_path, 'Film', filmname, 'dimension.txt')
@@ -4609,9 +4607,8 @@ def admin_version() -> bool:
         elif stage == 422:
             int_input = 0
             verification_code = print_422(ticket)
-            record = []
-            record.append(input(""))
-            if record [0] == verification_code:
+            record = input("")
+            if record == verification_code:
                 int_input = 1
             if int_input == 0:
                 stage = 420
@@ -4668,9 +4665,8 @@ def admin_version() -> bool:
         elif stage == 423:
             int_input = 0
             verification_code = print_423(showing)
-            record = []
-            record.append(input(""))
-            if record [0] == verification_code:
+            record = input("")
+            if record == verification_code:
                 int_input = 1
             if int_input == 0:
                 stage = 413
@@ -5122,9 +5118,8 @@ def admin_version() -> bool:
         elif stage == 501:
             int_input = 0
             verification_code = print_501()
-            record = []
-            record.append(input(""))
-            if record [0] == verification_code:
+            record = input("")
+            if record == verification_code:
                 int_input = 1
             if int_input != 0:
                 reset_sys()
