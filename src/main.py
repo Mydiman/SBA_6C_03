@@ -73,7 +73,8 @@ def main() -> None:
 					for j in list_quit:
 						print("\rShuting down in {} seconds {}".format(3 - i, j), end = "")
 						sleep(0.25)
-				exit()
+				break
 		except:
 			exception_type = exc_info() [0]
 			error = 1
+	exit()
