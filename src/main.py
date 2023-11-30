@@ -7,12 +7,12 @@ Log in ---> AdminVersion
 
 
 if __name__ == '__main__':
-	from Colour import Colour
-	input(Colour.Red + "Please run { __main__.py } in the root directory of this project" + Colour.Reset)
+	input("\033[31mPlease run { __main__.py } in the root directory of this project\033[31m")
 	quit()
 
 
 
+from os import path
 from time import sleep
 from sys import exc_info
 from .ClearScreen import clearscreen
