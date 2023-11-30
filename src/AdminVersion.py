@@ -410,7 +410,7 @@ def print_206(house) -> str:
     temp = ""
     for i in range(10):
         temp = temp + code [i]
-    print("Enter the security code thrice to delete { " + house + " }.")
+    print("Enter the security code to delete { " + house + " }.")
     print("")
     print("Security code: " + temp)
     return temp
@@ -733,7 +733,7 @@ def print_313(filmname) -> str:
     temp = ""
     for i in range(10):
         temp = temp + code [i]
-    print("Enter the security code thrice to delete { " + filmname + " }.")
+    print("Enter the security code to delete { " + filmname + " }.")
     print("")
     print("Security code: " + temp)
     return temp
@@ -1561,7 +1561,7 @@ def print_422(ticket) -> str:
     temp = ""
     for i in range(10):
         temp = temp + code [i]
-    print("Enter the security code thrice to delete { " + ticket + " }.")
+    print("Enter the security code to delete { " + ticket + " }.")
     print("")
     print("Security code: " + temp)
     return temp
@@ -1592,7 +1592,7 @@ def print_423(showing) -> str:
     temp = ""
     for i in range(10):
         temp = temp + code [i]
-    print("Enter the security code thrice to delete { " + showing + " }.")
+    print("Enter the security code to delete { " + showing + " }.")
     print("")
     print("Security code: " + temp)
     return temp
@@ -1850,7 +1850,7 @@ def print_501() -> str:
     temp = ""
     for i in range(10):
         temp = temp + code [i]
-    print("Enter the security code thrice to reset system.")
+    print("Enter the security code to reset system.")
     print("")
     print("Security code: " + temp)
     return temp
@@ -2326,136 +2326,125 @@ def admin_version() -> bool:
         elif stage == 206:
             int_input = 0
             verification_code = print_206(house)
-            recond = []
-            recond.append(input(""))
-            if recond [0] == verification_code:
-                clearscreen()
-                verification_code = print_206(house)
-                print(recond [0])
-                recond.append(input(""))
-                if recond [1] == verification_code:
-                    clearscreen()
-                    verification_code = print_206(house)
-                    print(recond [0])
-                    print(recond [1])
-                    recond.append(input(""))
-                    if recond [2] == verification_code:
-                        int_input = 1
-                        file_path = path.join(commond_path, 'House', 'housename.txt')
-                        line = []
-                        f = open(file_path, "r")
-                        count_house = int(f.readline() [:-1])
-                        for i in range(count_house):
-                            line.append(f.readline())
-                        f.close()
-                        f = open(file_path, "w")
-                        f.write("")
-                        f.close()
-                        f = open(file_path, "a")
-                        f.write(str(count_house - 1) + "\n")
-                        for i in range(count_house):
-                            if line [i] != house + "\n":
-                                f.write(line [i])
-                        f.close()
-                        file_path = path.join(commond_path, 'House', house, 'allseat.txt')
-                        remove(file_path)
-                        file_path = path.join(commond_path, 'House', house, 'houseplan.txt')
-                        remove(file_path)
-                        rmdir(path.join(commond_path, 'House', house))
-                        file_path = path.join(commond_path, 'Showing', '__House information', house, 'Showingnum.txt')
-                        f = open(file_path, "r")
-                        count_showing = int(f.readline())
-                        f.close()
-                        file_path = path.join(commond_path, 'Showing', '__House information', house, 'Showing.txt')
-                        f = open(file_path, "r")
-                        for i in range(count_showing):
-                            f.readline()
-                            temp = f.readline() [:-1]
-                            g = open(path.join(commond_path, 'Showing', temp, 'film.txt'), "r")
-                            filmname = g.readline() [:-1]
-                            dimension = g.readline() [:-1]
-                            language = g.readline() [:-1]
-                            g.close()
-                            g = open(path.join(commond_path, 'Showing', '__Film information', filmname, dimension, language, 'Showingnum.txt'), "r")
-                            count_showing_film = int(g.readline())
-                            g.close()
-                            g = open(path.join(commond_path, 'Showing', '__Film information', filmname, dimension, language, 'Showing.txt'), "r")
-                            line = ""
-                            for i in range(count_showing_film):
-                                temp1 = g.readline()
-                                temp2 = g.readline()
-                                if temp2 [:-1] != temp:
-                                    line += temp1 + temp2
-                            g.close()
-                            g = open(path.join(commond_path, 'Showing', '__Film information', filmname, dimension, language, 'Showingnum.txt'), "w")
-                            g.write(str(count_showing_film - 1))
-                            g.close()
-                            g = open(path.join(commond_path, 'Showing', '__Film information', filmname, dimension, language, 'Showing.txt'), "w")
-                            g.write(line)
-                            g.close()
-                            g = open(path.join(commond_path, 'Showing', '__Time information', 'Showingnum.txt'), "r")
-                            count_showing_time = int(g.readline())
-                            g.close()
-                            g = open(path.join(commond_path, 'Showing', '__Time information', 'Showing.txt'), "r")
-                            line = ""
-                            for i in range(count_showing_time):
-                                temp1 = g.readline()
-                                temp2 = g.readline()
-                                if temp2 [:-1] != temp:
-                                    line += temp1 + temp2
-                            g.close()
-                            g = open(path.join(commond_path, 'Showing', '__Time information', 'Time.txt'), "r")
-                            line1 = ""
-                            for i in range(count_showing_time):
-                                temp1 = g.readline()
-                                temp2 = g.readline()
-                                temp3 = g.readline()
-                                if temp3 [:-1] != temp:
-                                    line1 += temp1 + temp2 + temp3
-                            g.close()
-                            g = open(path.join(commond_path, 'Showing', '__Time information', 'Showingnum.txt'), "w")
-                            g.write(str(count_showing_time - 1))
-                            g.close()
-                            g = open(path.join(commond_path, 'Showing', '__Time information', 'Showing.txt'), "w")
-                            g.write(line)
-                            g.close()
-                            g = open(path.join(commond_path, 'Showing', '__Time information', 'time.txt'), "w")
-                            g.write(line1)
-                            g.close()
-                            g = open(path.join(commond_path, 'Showing', 'Showingnum.txt'), "r")
-                            count_showing_time = int(g.readline())
-                            g.close()
-                            g = open(path.join(commond_path, 'Showing', 'Showing.txt'), "r")
-                            line = ""
-                            for i in range(count_showing_time):
-                                temp1 = g.readline()
-                                temp2 = g.readline()
-                                if temp2 [:-1] != temp:
-                                    line += temp1 + temp2
-                            g.close()
-                            g = open(path.join(commond_path, 'Showing', 'Showingnum.txt'), "w")
-                            g.write(str(count_showing_time - 1))
-                            g.close()
-                            g = open(path.join(commond_path, 'Showing', 'Showing.txt'), "w")
-                            g.write(line)
-                            g.close()
-                            g = open(path.join(commond_path, 'Showing', 'Missshowing.txt'), "a")
-                            g.write(temp + "\n")
-                            g.close()
-                            remove(path.join(commond_path, 'Showing', temp, 'film.txt'))
-                            remove(path.join(commond_path, 'Showing', temp, 'house.txt'))
-                            remove(path.join(commond_path, 'Showing', temp, 'houseplan.txt'))
-                            remove(path.join(commond_path, 'Showing', temp, 'ticket.txt'))
-                            remove(path.join(commond_path, 'Showing', temp, 'starttime.txt'))
-                            rmdir(path.join(commond_path, 'Showing', temp))
-                        f.close()
-                        file_path = path.join(commond_path, 'Showing', '__House information', house, 'Showing.txt')
-                        remove(file_path)
-                        file_path = path.join(commond_path, 'Showing', '__House information', house, 'Showingnum.txt')
-                        remove(file_path)
-                        file_path = path.join(commond_path, 'Showing', '__House information', house, 'Time.txt')
-                        remove(file_path)
-                        rmdir(path.join(commond_path, 'Showing', '__House information', house))
+            record = []
+            record.append(input(""))
+            if record [0] == verification_code:
+                int_input = 1
+                file_path = path.join(commond_path, 'House', 'housename.txt')
+                line = []
+                f = open(file_path, "r")
+                count_house = int(f.readline() [:-1])
+                for i in range(count_house):
+                    line.append(f.readline())
+                f.close()
+                f = open(file_path, "w")
+                f.write("")
+                f.close()
+                f = open(file_path, "a")
+                f.write(str(count_house - 1) + "\n")
+                for i in range(count_house):
+                    if line [i] != house + "\n":
+                        f.write(line [i])
+                f.close()
+                file_path = path.join(commond_path, 'House', house, 'allseat.txt')
+                remove(file_path)
+                file_path = path.join(commond_path, 'House', house, 'houseplan.txt')
+                remove(file_path)
+                rmdir(path.join(commond_path, 'House', house))
+                file_path = path.join(commond_path, 'Showing', '__House information', house, 'Showingnum.txt')
+                f = open(file_path, "r")
+                count_showing = int(f.readline())
+                f.close()
+                file_path = path.join(commond_path, 'Showing', '__House information', house, 'Showing.txt')
+                f = open(file_path, "r")
+                for i in range(count_showing):
+                    f.readline()
+                    temp = f.readline() [:-1]
+                    g = open(path.join(commond_path, 'Showing', temp, 'film.txt'), "r")
+                    filmname = g.readline() [:-1]
+                    dimension = g.readline() [:-1]
+                    language = g.readline() [:-1]
+                    g.close()
+                    g = open(path.join(commond_path, 'Showing', '__Film information', filmname, dimension, language, 'Showingnum.txt'), "r")
+                    count_showing_film = int(g.readline())
+                    g.close()
+                    g = open(path.join(commond_path, 'Showing', '__Film information', filmname, dimension, language, 'Showing.txt'), "r")
+                    line = ""
+                    for i in range(count_showing_film):
+                        temp1 = g.readline()
+                        temp2 = g.readline()
+                        if temp2 [:-1] != temp:
+                            line += temp1 + temp2
+                    g.close()
+                    g = open(path.join(commond_path, 'Showing', '__Film information', filmname, dimension, language, 'Showingnum.txt'), "w")
+                    g.write(str(count_showing_film - 1))
+                    g.close()
+                    g = open(path.join(commond_path, 'Showing', '__Film information', filmname, dimension, language, 'Showing.txt'), "w")
+                    g.write(line)
+                    g.close()
+                    g = open(path.join(commond_path, 'Showing', '__Time information', 'Showingnum.txt'), "r")
+                    count_showing_time = int(g.readline())
+                    g.close()
+                    g = open(path.join(commond_path, 'Showing', '__Time information', 'Showing.txt'), "r")
+                    line = ""
+                    for i in range(count_showing_time):
+                        temp1 = g.readline()
+                        temp2 = g.readline()
+                        if temp2 [:-1] != temp:
+                            line += temp1 + temp2
+                    g.close()
+                    g = open(path.join(commond_path, 'Showing', '__Time information', 'Time.txt'), "r")
+                    line1 = ""
+                    for i in range(count_showing_time):
+                        temp1 = g.readline()
+                        temp2 = g.readline()
+                        temp3 = g.readline()
+                        if temp3 [:-1] != temp:
+                            line1 += temp1 + temp2 + temp3
+                    g.close()
+                    g = open(path.join(commond_path, 'Showing', '__Time information', 'Showingnum.txt'), "w")
+                    g.write(str(count_showing_time - 1))
+                    g.close()
+                    g = open(path.join(commond_path, 'Showing', '__Time information', 'Showing.txt'), "w")
+                    g.write(line)
+                    g.close()
+                    g = open(path.join(commond_path, 'Showing', '__Time information', 'time.txt'), "w")
+                    g.write(line1)
+                    g.close()
+                    g = open(path.join(commond_path, 'Showing', 'Showingnum.txt'), "r")
+                    count_showing_time = int(g.readline())
+                    g.close()
+                    g = open(path.join(commond_path, 'Showing', 'Showing.txt'), "r")
+                    line = ""
+                    for i in range(count_showing_time):
+                        temp1 = g.readline()
+                        temp2 = g.readline()
+                        if temp2 [:-1] != temp:
+                            line += temp1 + temp2
+                    g.close()
+                    g = open(path.join(commond_path, 'Showing', 'Showingnum.txt'), "w")
+                    g.write(str(count_showing_time - 1))
+                    g.close()
+                    g = open(path.join(commond_path, 'Showing', 'Showing.txt'), "w")
+                    g.write(line)
+                    g.close()
+                    g = open(path.join(commond_path, 'Showing', 'Missshowing.txt'), "a")
+                    g.write(temp + "\n")
+                    g.close()
+                    remove(path.join(commond_path, 'Showing', temp, 'film.txt'))
+                    remove(path.join(commond_path, 'Showing', temp, 'house.txt'))
+                    remove(path.join(commond_path, 'Showing', temp, 'houseplan.txt'))
+                    remove(path.join(commond_path, 'Showing', temp, 'ticket.txt'))
+                    remove(path.join(commond_path, 'Showing', temp, 'starttime.txt'))
+                    rmdir(path.join(commond_path, 'Showing', temp))
+                f.close()
+                file_path = path.join(commond_path, 'Showing', '__House information', house, 'Showing.txt')
+                remove(file_path)
+                file_path = path.join(commond_path, 'Showing', '__House information', house, 'Showingnum.txt')
+                remove(file_path)
+                file_path = path.join(commond_path, 'Showing', '__House information', house, 'Time.txt')
+                remove(file_path)
+                rmdir(path.join(commond_path, 'Showing', '__House information', house))
             if int_input == 0:
                 stage = 202
             else:
@@ -3470,8 +3459,8 @@ def admin_version() -> bool:
                 print("Current price of {}        : ${}".format(dimension [i], line [i]))
                 print("Current student price of {}: ${}".format(dimension [i], line1 [i]))
             print("")
-            recond = []
-            recond1 = []
+            record = []
+            record1 = []
             for i in range(count_price):
                 str_input = ""
                 while str_input == "":
@@ -3498,8 +3487,8 @@ def admin_version() -> bool:
                             print("Current student price of {}: ${}".format(dimension [j], line1 [j]))
                         print("")
                         for j in range(i):
-                            print("New price of {}        : ${}".format(dimension [j], recond [j]))
-                            print("New student price of {}: ${}".format(dimension [j], recond1 [j]))
+                            print("New price of {}        : ${}".format(dimension [j], record [j]))
+                            print("New student price of {}: ${}".format(dimension [j], record1 [j]))
                     elif str_input.isdigit() == False:
                         str_input = ""
                         print(Colour.Red + "PRICE MUST BE INTEGER" + Colour.Reset)
@@ -3512,10 +3501,10 @@ def admin_version() -> bool:
                             print("Current student price of {}: ${}".format(dimension [j], line1 [j]))
                         print("")
                         for j in range(i):
-                            print("New price of {}        : ${}".format(dimension [j], recond [j]))
-                            print("New student price of {}: ${}".format(dimension [j], recond1 [j]))
+                            print("New price of {}        : ${}".format(dimension [j], record [j]))
+                            print("New student price of {}: ${}".format(dimension [j], record1 [j]))
                     else:
-                        recond.append(str_input)
+                        record.append(str_input)
                 str_input = ""
                 while str_input == "":
                     print("New student price of {}: $".format(dimension [i]), end = "")
@@ -3541,8 +3530,8 @@ def admin_version() -> bool:
                             print("Current student price of {}: ${}".format(dimension [j], line1 [j]))
                         print("")
                         for j in range(i):
-                            print("New price of {}        : ${}".format(dimension [j], recond [j]))
-                            print("New student price of {}: ${}".format(dimension [j], recond1 [j]))
+                            print("New price of {}        : ${}".format(dimension [j], record [j]))
+                            print("New student price of {}: ${}".format(dimension [j], record1 [j]))
                     elif str_input.isdigit() == False:
                         str_input = ""
                         print(Colour.Red + "PRICE MUST BE INTEGER" + Colour.Reset)
@@ -3555,20 +3544,20 @@ def admin_version() -> bool:
                             print("Current student price of {}: ${}".format(dimension [j], line1 [j]))
                         print("")
                         for j in range(i):
-                            print("New price of {}        : ${}".format(dimension [j], recond [j]))
-                            print("New student price of {}: ${}".format(dimension [j], recond1 [j]))
+                            print("New price of {}        : ${}".format(dimension [j], record [j]))
+                            print("New student price of {}: ${}".format(dimension [j], record1 [j]))
                     else:
-                        recond1.append(str_input)
+                        record1.append(str_input)
             price = ""
             for i in range(count_price):
-                price = price + recond [i] + "\n"
+                price = price + record [i] + "\n"
             file_path = path.join(commond_path, 'Film', filmname, 'price.txt')
             f = open(file_path, "w")
             f.write(price)
             f.close()
             st_price = ""
             for i in range(count_price):
-                st_price = st_price + recond1 [i] + "\n"
+                st_price = st_price + record1 [i] + "\n"
             file_path = path.join(commond_path, 'Film', filmname, 'st_price.txt')
             f = open(file_path, "w")
             f.write(st_price)
@@ -3578,205 +3567,194 @@ def admin_version() -> bool:
         elif stage == 313:
             int_input = 0
             verification_code = print_313(filmname)
-            recond = []
-            recond.append(input(""))
-            if recond [0] == verification_code:
-                clearscreen()
-                verification_code = print_313(filmname)
-                print(recond [0])
-                recond.append(input(""))
-                if recond [1] == verification_code:
-                    clearscreen()
-                    verification_code = print_313(filmname)
-                    print(recond [0])
-                    print(recond [1])
-                    recond.append(input(""))
-                    if recond [2] == verification_code:
-                        int_input = 1
-                        file_path = path.join(commond_path, 'Film', filmname, 'dimension.txt')
-                        f = open(file_path, "r")
-                        count_dimension = int(f.readline() [:-1])
-                        list_dimension = []
-                        for i in range(count_dimension):
-                            list_dimension.append(f.readline() [:-1])
-                        f.close()
-                        file_path = path.join(commond_path, 'Film', filmname, 'language.txt')
-                        f = open(file_path, "r")
-                        count_language = int(f.readline() [:-1])
-                        list_language = []
-                        for i in range(count_language):
-                            list_language.append(f.readline() [:-1])
-                        f.close()
-                        list_showing = []
-                        for i in list_dimension:
-                            for j in list_language:
-                                file_path = path.join(commond_path, 'Showing', '__Film information', filmname, i, j, 'Showingnum.txt')
-                                f = open(file_path, "r")
-                                count_showing = int(f.readline())
-                                f.close()
-                                file_path = path.join(commond_path, 'Showing', '__Film information', filmname, i, j, 'Showing.txt')
-                                f = open(file_path, "r")
-                                for k in range(count_showing):
-                                    f.readline()
-                                    list_showing.append(f.readline() [:-1])
-                                f.close()
-                                file_path = path.join(commond_path, 'Showing', '__Film information', filmname, i, j, 'Showingnum.txt')
-                                remove(file_path)
-                                file_path = path.join(commond_path, 'Showing', '__Film information', filmname, i, j, 'Showing.txt')
-                                remove(file_path)
-                                rmdir(path.join(commond_path, 'Showing', '__Film information', filmname, i, j))
-                            rmdir(path.join(commond_path, 'Showing', '__Film information', filmname, i))
-                        rmdir(path.join(commond_path, 'Showing', '__Film information', filmname))
-                        file_path = path.join(commond_path, 'House', 'housename.txt')
-                        f = open(file_path, "r")
-                        count_house = int(f.readline() [:-1])
-                        list_house = []
-                        for i in range(count_house):
-                            list_house.append(f.readline() [:-1])
-                        f.close()
-                        for i in list_house:
-                            file_path = path.join(commond_path, 'Showing', '__House information', i, 'Showingnum.txt')
-                            f = open(file_path, "r")
-                            count_showing = int(f.readline())
-                            str_count_showing = count_showing
-                            f.close()
-                            file_path = path.join(commond_path, 'Showing', '__House information', i, 'Showing.txt')
-                            f = open(file_path, "r")
-                            file_path = path.join(commond_path, 'Showing', '__House information', i, 'Time.txt')
-                            g = open(file_path, "r")
-                            line = ""
-                            line1 = ""
-                            for j in range(count_showing):
-                                temp1 = f.readline()
-                                temp2 = f.readline()
-                                temp3 = f.readline()
-                                temp4 = f.readline()
-                                temp5 = f.readline()
-                                if not temp2 [:-1] in list_showing:
-                                    line += temp1 + temp2
-                                else:
-                                    str_count_showing -= 1
-                                if not temp5 [:-1] in list_showing:
-                                    line1 += temp3 + temp4 + temp5
-                            f.close()
-                            g.close()
-                            file_path = path.join(commond_path, 'Showing', '__House information', i, 'Showing.txt')
-                            f = open(file_path, "w")
-                            f.write(line)
-                            f.close()
-                            file_path = path.join(commond_path, 'Showing', '__House information', i, 'Time.txt')
-                            f = open(file_path, "w")
-                            f.write(line1)
-                            f.close()
-                            file_path = path.join(commond_path, 'Showing', '__House information', i, 'Showingnum.txt')
-                            f = open(file_path, "w")
-                            f.write(str(str_count_showing))
-                            f.close()
-                        file_path = path.join(commond_path, 'Showing', '__Time information', 'Showingnum.txt')
-                        f = open(file_path, "r")
-                        count_showing = int(f.readline())
-                        str_count_showing = count_showing
-                        f.close()
-                        file_path = path.join(commond_path, 'Showing', '__Time information', 'Showing.txt')
-                        f = open(file_path, "r")
-                        file_path = path.join(commond_path, 'Showing', '__Time information', 'Time.txt')
-                        g = open(file_path, "r")
-                        line = ""
-                        line1 = ""
-                        for j in range(count_showing):
-                            temp1 = f.readline()
-                            temp2 = f.readline()
-                            temp3 = f.readline()
-                            temp4 = f.readline()
-                            temp5 = f.readline()
-                            if not temp2 [:-1] in list_showing:
-                                line += temp1 + temp2
-                            else:
-                                str_count_showing -= 1
-                            if not temp5 [:-1] in list_showing:
-                                line1 += temp3 + temp4 + temp5
-                        f.close()
-                        g.close()
-                        file_path = path.join(commond_path, 'Showing', '__Time information', 'Showing.txt')
-                        f = open(file_path, "w")
-                        f.write(line)
-                        f.close()
-                        file_path = path.join(commond_path, 'Showing', '__Time information', 'Time.txt')
-                        f = open(file_path, "w")
-                        f.write(line1)
-                        f.close()
-                        file_path = path.join(commond_path, 'Showing', '__Time information', 'Showingnum.txt')
-                        f = open(file_path, "w")
-                        f.write(str(str_count_showing))
-                        f.close()
-                        file_path = path.join(commond_path, 'Showing', 'Showingnum.txt')
+            record = []
+            record.append(input(""))
+            if record [0] == verification_code:
+                int_input = 1
+                file_path = path.join(commond_path, 'Film', filmname, 'dimension.txt')
+                f = open(file_path, "r")
+                count_dimension = int(f.readline() [:-1])
+                list_dimension = []
+                for i in range(count_dimension):
+                    list_dimension.append(f.readline() [:-1])
+                f.close()
+                file_path = path.join(commond_path, 'Film', filmname, 'language.txt')
+                f = open(file_path, "r")
+                count_language = int(f.readline() [:-1])
+                list_language = []
+                for i in range(count_language):
+                    list_language.append(f.readline() [:-1])
+                f.close()
+                list_showing = []
+                for i in list_dimension:
+                    for j in list_language:
+                        file_path = path.join(commond_path, 'Showing', '__Film information', filmname, i, j, 'Showingnum.txt')
                         f = open(file_path, "r")
                         count_showing = int(f.readline())
                         f.close()
-                        file_path = path.join(commond_path, 'Showing', 'Showing.txt')
+                        file_path = path.join(commond_path, 'Showing', '__Film information', filmname, i, j, 'Showing.txt')
                         f = open(file_path, "r")
-                        line = ""
-                        for j in range(count_showing):
-                            temp = f.readline()
-                            if not temp [:-1] in list_showing:
-                                line += temp
+                        for k in range(count_showing):
+                            f.readline()
+                            list_showing.append(f.readline() [:-1])
                         f.close()
-                        f = open(file_path, "w")
-                        f.write(line)
-                        f.close()
-                        for i in list_showing:
-                            file_path = path.join(commond_path, 'Showing', 'Missshowing.txt')
-                            f = open(file_path, "a")
-                            f.write(i + "\n")
-                            f.close()
-                            file_path = path.join(commond_path, 'Showing', 'Showingnum.txt')
-                            f = open(file_path, "r")
-                            count_showing = int(f.readline())
-                            f.close()
-                            f = open(file_path, "w")
-                            f.write(str(count_showing - 1))
-                            f.close()
-                            file_path = path.join(commond_path, 'Showing', i, 'film.txt')
-                            remove(file_path)
-                            file_path = path.join(commond_path, 'Showing', i, 'house.txt')
-                            remove(file_path)
-                            file_path = path.join(commond_path, 'Showing', i, 'houseplan.txt')
-                            remove(file_path)
-                            file_path = path.join(commond_path, 'Showing', i, 'starttime.txt')
-                            remove(file_path)
-                            file_path = path.join(commond_path, 'Showing', i, 'ticket.txt')
-                            remove(file_path)
-                            file_path = path.join(commond_path, 'Showing', i)
-                            rmdir(file_path)
-                        file_path = path.join(commond_path, 'Film', 'filmname.txt')
-                        line = []
-                        f = open(file_path, "r")
-                        count_film = int(f.readline() [:-1])
-                        for i in range(count_film):
-                            line.append(f.readline())
-                        f.close()
-                        f = open(file_path, "w")
-                        f.write("")
-                        f.close()
-                        f = open(file_path, "a")
-                        f.write(str(count_film - 1) + "\n")
-                        for i in range(count_film):
-                            if line [i] != filmname + "\n":
-                                f.write(line [i])
-                        f.close()
-                        file_path = path.join(commond_path, 'Film', filmname, 'dimension.txt')
+                        file_path = path.join(commond_path, 'Showing', '__Film information', filmname, i, j, 'Showingnum.txt')
                         remove(file_path)
-                        file_path = path.join(commond_path, 'Film', filmname, 'language.txt')
+                        file_path = path.join(commond_path, 'Showing', '__Film information', filmname, i, j, 'Showing.txt')
                         remove(file_path)
-                        file_path = path.join(commond_path, 'Film', filmname, 'price.txt')
-                        remove(file_path)
-                        file_path = path.join(commond_path, 'Film', filmname, 'st_price.txt')
-                        remove(file_path)
-                        file_path = path.join(commond_path, 'Film', filmname, 'rating.txt')
-                        remove(file_path)
-                        file_path = path.join(commond_path, 'Film', filmname, 'timelength.txt')
-                        remove(file_path)
-                        rmdir(path.join(commond_path, 'Film', filmname))
+                        rmdir(path.join(commond_path, 'Showing', '__Film information', filmname, i, j))
+                    rmdir(path.join(commond_path, 'Showing', '__Film information', filmname, i))
+                rmdir(path.join(commond_path, 'Showing', '__Film information', filmname))
+                file_path = path.join(commond_path, 'House', 'housename.txt')
+                f = open(file_path, "r")
+                count_house = int(f.readline() [:-1])
+                list_house = []
+                for i in range(count_house):
+                    list_house.append(f.readline() [:-1])
+                f.close()
+                for i in list_house:
+                    file_path = path.join(commond_path, 'Showing', '__House information', i, 'Showingnum.txt')
+                    f = open(file_path, "r")
+                    count_showing = int(f.readline())
+                    str_count_showing = count_showing
+                    f.close()
+                    file_path = path.join(commond_path, 'Showing', '__House information', i, 'Showing.txt')
+                    f = open(file_path, "r")
+                    file_path = path.join(commond_path, 'Showing', '__House information', i, 'Time.txt')
+                    g = open(file_path, "r")
+                    line = ""
+                    line1 = ""
+                    for j in range(count_showing):
+                        temp1 = f.readline()
+                        temp2 = f.readline()
+                        temp3 = f.readline()
+                        temp4 = f.readline()
+                        temp5 = f.readline()
+                        if not temp2 [:-1] in list_showing:
+                            line += temp1 + temp2
+                        else:
+                            str_count_showing -= 1
+                        if not temp5 [:-1] in list_showing:
+                            line1 += temp3 + temp4 + temp5
+                    f.close()
+                    g.close()
+                    file_path = path.join(commond_path, 'Showing', '__House information', i, 'Showing.txt')
+                    f = open(file_path, "w")
+                    f.write(line)
+                    f.close()
+                    file_path = path.join(commond_path, 'Showing', '__House information', i, 'Time.txt')
+                    f = open(file_path, "w")
+                    f.write(line1)
+                    f.close()
+                    file_path = path.join(commond_path, 'Showing', '__House information', i, 'Showingnum.txt')
+                    f = open(file_path, "w")
+                    f.write(str(str_count_showing))
+                    f.close()
+                file_path = path.join(commond_path, 'Showing', '__Time information', 'Showingnum.txt')
+                f = open(file_path, "r")
+                count_showing = int(f.readline())
+                str_count_showing = count_showing
+                f.close()
+                file_path = path.join(commond_path, 'Showing', '__Time information', 'Showing.txt')
+                f = open(file_path, "r")
+                file_path = path.join(commond_path, 'Showing', '__Time information', 'Time.txt')
+                g = open(file_path, "r")
+                line = ""
+                line1 = ""
+                for j in range(count_showing):
+                    temp1 = f.readline()
+                    temp2 = f.readline()
+                    temp3 = f.readline()
+                    temp4 = f.readline()
+                    temp5 = f.readline()
+                    if not temp2 [:-1] in list_showing:
+                        line += temp1 + temp2
+                    else:
+                        str_count_showing -= 1
+                    if not temp5 [:-1] in list_showing:
+                        line1 += temp3 + temp4 + temp5
+                f.close()
+                g.close()
+                file_path = path.join(commond_path, 'Showing', '__Time information', 'Showing.txt')
+                f = open(file_path, "w")
+                f.write(line)
+                f.close()
+                file_path = path.join(commond_path, 'Showing', '__Time information', 'Time.txt')
+                f = open(file_path, "w")
+                f.write(line1)
+                f.close()
+                file_path = path.join(commond_path, 'Showing', '__Time information', 'Showingnum.txt')
+                f = open(file_path, "w")
+                f.write(str(str_count_showing))
+                f.close()
+                file_path = path.join(commond_path, 'Showing', 'Showingnum.txt')
+                f = open(file_path, "r")
+                count_showing = int(f.readline())
+                f.close()
+                file_path = path.join(commond_path, 'Showing', 'Showing.txt')
+                f = open(file_path, "r")
+                line = ""
+                for j in range(count_showing):
+                    temp = f.readline()
+                    if not temp [:-1] in list_showing:
+                        line += temp
+                f.close()
+                f = open(file_path, "w")
+                f.write(line)
+                f.close()
+                for i in list_showing:
+                    file_path = path.join(commond_path, 'Showing', 'Missshowing.txt')
+                    f = open(file_path, "a")
+                    f.write(i + "\n")
+                    f.close()
+                    file_path = path.join(commond_path, 'Showing', 'Showingnum.txt')
+                    f = open(file_path, "r")
+                    count_showing = int(f.readline())
+                    f.close()
+                    f = open(file_path, "w")
+                    f.write(str(count_showing - 1))
+                    f.close()
+                    file_path = path.join(commond_path, 'Showing', i, 'film.txt')
+                    remove(file_path)
+                    file_path = path.join(commond_path, 'Showing', i, 'house.txt')
+                    remove(file_path)
+                    file_path = path.join(commond_path, 'Showing', i, 'houseplan.txt')
+                    remove(file_path)
+                    file_path = path.join(commond_path, 'Showing', i, 'starttime.txt')
+                    remove(file_path)
+                    file_path = path.join(commond_path, 'Showing', i, 'ticket.txt')
+                    remove(file_path)
+                    file_path = path.join(commond_path, 'Showing', i)
+                    rmdir(file_path)
+                file_path = path.join(commond_path, 'Film', 'filmname.txt')
+                line = []
+                f = open(file_path, "r")
+                count_film = int(f.readline() [:-1])
+                for i in range(count_film):
+                    line.append(f.readline())
+                f.close()
+                f = open(file_path, "w")
+                f.write("")
+                f.close()
+                f = open(file_path, "a")
+                f.write(str(count_film - 1) + "\n")
+                for i in range(count_film):
+                    if line [i] != filmname + "\n":
+                        f.write(line [i])
+                f.close()
+                file_path = path.join(commond_path, 'Film', filmname, 'dimension.txt')
+                remove(file_path)
+                file_path = path.join(commond_path, 'Film', filmname, 'language.txt')
+                remove(file_path)
+                file_path = path.join(commond_path, 'Film', filmname, 'price.txt')
+                remove(file_path)
+                file_path = path.join(commond_path, 'Film', filmname, 'st_price.txt')
+                remove(file_path)
+                file_path = path.join(commond_path, 'Film', filmname, 'rating.txt')
+                remove(file_path)
+                file_path = path.join(commond_path, 'Film', filmname, 'timelength.txt')
+                remove(file_path)
+                rmdir(path.join(commond_path, 'Film', filmname))
             if int_input == 0:
                 stage = 302
             else:
@@ -4631,21 +4609,10 @@ def admin_version() -> bool:
         elif stage == 422:
             int_input = 0
             verification_code = print_422(ticket)
-            recond = []
-            recond.append(input(""))
-            if recond [0] == verification_code:
-                clearscreen()
-                verification_code = print_422(ticket)
-                print(recond [0])
-                recond.append(input(""))
-                if recond [1] == verification_code:
-                    clearscreen()
-                    verification_code = print_422(ticket)
-                    print(recond [0])
-                    print(recond [1])
-                    recond.append(input(""))
-                    if recond [2] == verification_code:
-                        int_input = 1
+            record = []
+            record.append(input(""))
+            if record [0] == verification_code:
+                int_input = 1
             if int_input == 0:
                 stage = 420
             else:
@@ -4701,21 +4668,10 @@ def admin_version() -> bool:
         elif stage == 423:
             int_input = 0
             verification_code = print_423(showing)
-            recond = []
-            recond.append(input(""))
-            if recond [0] == verification_code:
-                clearscreen()
-                verification_code = print_423(showing)
-                print(recond [0])
-                recond.append(input(""))
-                if recond [1] == verification_code:
-                    clearscreen()
-                    verification_code = print_423(showing)
-                    print(recond [0])
-                    print(recond [1])
-                    recond.append(input(""))
-                    if recond [2] == verification_code:
-                        int_input = 1
+            record = []
+            record.append(input(""))
+            if record [0] == verification_code:
+                int_input = 1
             if int_input == 0:
                 stage = 413
             else:
@@ -5166,21 +5122,10 @@ def admin_version() -> bool:
         elif stage == 501:
             int_input = 0
             verification_code = print_501()
-            recond = []
-            recond.append(input(""))
-            if recond [0] == verification_code:
-                clearscreen()
-                verification_code = print_501()
-                print(recond [0])
-                recond.append(input(""))
-                if recond [1] == verification_code:
-                    clearscreen()
-                    verification_code = print_501()
-                    print(recond [0])
-                    print(recond [1])
-                    recond.append(input(""))
-                    if recond [2] == verification_code:
-                        int_input = 1
+            record = []
+            record.append(input(""))
+            if record [0] == verification_code:
+                int_input = 1
             if int_input != 0:
                 reset_sys()
             stage = 1
