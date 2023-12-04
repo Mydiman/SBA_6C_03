@@ -33,7 +33,7 @@ def main() -> None:
 	if not path.exists(path.join(path.dirname(path.realpath(__file__)), 'Data')):
 		reset_sys()
 	while True:
-		#try:
+		try:
 			if error == 0:
 				clearscreen()
 				login_version = log_in()
@@ -67,13 +67,14 @@ def main() -> None:
 						for j in list_logout:
 							print("\rLoging out in {} seconds {}".format(3 - i, j), end = "")
 							sleep(0.25)
-					if byebye == 1:
-						list_quit = ["\\", "|", "/", "-"]
-						for i in range(0, 3):
-							for j in list_quit:
-								print("\rShuting down in {} seconds {}".format(3 - i, j), end = "")
-								sleep(0.25)
-						break
+				if byebye == 1:
+					clearscreen()
+					list_quit = ["\\", "|", "/", "-"]
+					for i in range(0, 3):
+						for j in list_quit:
+							print("\rShuting down in {} seconds {}".format(3 - i, j), end = "")
+							sleep(0.25)
+					break
 			elif login_version == 2:
 				clearscreen()
 				user_version()
@@ -84,7 +85,7 @@ def main() -> None:
 					for j in list_logout:
 						print("\rLoging out in {} seconds {}".format(3 - i, j), end = "")
 						sleep(0.25)
-		#except:
-		#	exception_type = exc_info() [0]
-		#	error = 1
+		except:
+			exception_type = exc_info() [0]
+			error = 1
 	exit()
