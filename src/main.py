@@ -44,6 +44,7 @@ def main() -> None:
 					reset_sys()
 					login_version = 3
 					print(Colour.Red + "SYSTEM RESETED" + Colour.Reset)
+					input(Colour.Yellow + "ENTER TO CONTINUE" + Colour.Reset)
 					print("Username of admin: admin")
 					print("Password of admin: pass")
 					print("Username of admin: user")
