@@ -1141,7 +1141,7 @@ def print_410(filter_film, filter_dimension, filter_language, filter_house, filt
             language_film.append(language)
         for i in range(count_dimension_film):
             for j in language_film [i]:
-                file_path = path.join(commond_path, 'Showing', '__Film information', dimension_film [i], filter_dimension, j, 'showingnum.txt')
+                file_path = path.join(commond_path, 'Showing', '__Film information', dimension_film [i], filter_dimension, j, 'Showingnum.txt')
                 f = open(file_path, "r")
                 count_showing_film = int(f.readline())
                 f.close()
@@ -1183,7 +1183,7 @@ def print_410(filter_film, filter_dimension, filter_language, filter_house, filt
             language_film.append(language)
         for i in range(count_dimension_film):
             for j in language_film [i]:
-                file_path = path.join(commond_path, 'Showing', '__Film information', dimension_film [i], j, filter_language, 'showingnum.txt')
+                file_path = path.join(commond_path, 'Showing', '__Film information', dimension_film [i], j, filter_language, 'Showingnum.txt')
                 f = open(file_path, "r")
                 count_showing_film = int(f.readline())
                 f.close()
@@ -2500,11 +2500,11 @@ def admin_version() -> bool:
                     else:
                         f.write(line [j])
                 f.close()
-                file_path = path.join(commond_path, 'Showing', '__House information', house, 'showingnum.txt')
+                file_path = path.join(commond_path, 'Showing', '__House information', house, 'Showingnum.txt')
                 f = open(file_path, "r")
                 count_showing = int(f.readline())
                 f.close()
-                file_path = path.join(commond_path, 'Showing', '__House information', house, 'showing.txt')
+                file_path = path.join(commond_path, 'Showing', '__House information', house, 'Showing.txt')
                 f = open(file_path, "r")
                 for i in range(count_showing):
                     f.readline()
