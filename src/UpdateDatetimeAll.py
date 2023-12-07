@@ -20,7 +20,6 @@ from .CheckDatetime import check_datetime
 
 def update_status():
     clearscreen()
-    print("Please wait for a while.")
     file_path = path.join(commond_path, 'Showing', 'Showingnum.txt')
     f = open(file_path, "r")
     count = int(f.readline())
