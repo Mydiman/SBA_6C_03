@@ -1,4 +1,13 @@
-"""detail in admin_stage.txt"""
+"""
+admin version
+stage
+1   -> Menu
+101 -> Account
+201 -> House
+301 -> Film
+401 -> Showing
+501 -> Reset system
+"""
 
 
 
