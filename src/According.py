@@ -3,8 +3,8 @@
 
 
 if __name__ == '__main__':
-	input("\033[31mPlease run { __main__.py } in the root directory of this project\033[K")
-	quit()
+    input("\033[31mPlease run { __main__.py } in the root directory of this project\033[K")
+    quit()
 
 
     
