@@ -992,7 +992,7 @@ def print_408_409(filter_after, filter_before) -> None:
         print("Period starting time              : " + filter_after)
         print("Period ending time                : " + filter_before)
     print("")
-	print("Time format: DD/MM/YY HH:MM:SS")
+    print("Time format: DD/MM/YY HH:MM:SS")
     print("Input \"exit\" to exit")
     print("")
 
